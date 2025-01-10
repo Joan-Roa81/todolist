@@ -1,0 +1,52 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">TodoList</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+    </div>
+  </div>
+</nav>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-8">
+      <ul class="list-group">
+        <li *ngFor="let tarea of TareaList" class="list-group-item">
+          <!-- Formulario para editar la tarea -->
+          <div *ngIf="tarea.id === editTaskId; else showTask">
+            <input [(ngModel)]="tarea.titulo" placeholder="Editar título" />
+            <label>
+              Completada:
+              <input type="checkbox" [(ngModel)]="tarea.estado" />
+            </label>
+            <button class="btn btn-primary" (click)="updateTask(tarea)">Actualizar</button>
+            <button class="btn btn-secondary" (click)="cancelEdit()">Cancelar</button>
+          </div>
+  
+          <!-- Mostrar tarea si no está en modo de edición -->
+          <ng-template #showTask>
+            <h3>{{ tarea.titulo }}</h3>
+            <p>ID: {{ tarea.id }}</p>
+            <p>Completada: {{ tarea.estado ? 'Sí' : 'No' }}</p>
+            <button *ngIf="tarea.id !== undefined" class="btn btn-info" (click)="editTask(tarea.id)">Editar</button>
+            <button *ngIf="tarea.id !== undefined" class="btn btn-danger" (click)="deleteTask(tarea.id)">Eliminar</button>
+          </ng-template>
+        </li>
+      </ul>
+      
+    </div>
+  </div>
+  <div class="container">
+
+    <h3>Prueba</h3>
+  </div>
+  <div>
+    <button (click)="addTask()" > Add</button>
+    <input [(ngModel)]="newTask" placeholder="Enter new task"/>
+    
+  </div>
+
+  
+</div>
