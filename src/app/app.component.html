@@ -16,10 +16,10 @@
         <li *ngFor="let tarea of TareaList" class="list-group-item">
           <!-- Formulario para editar la tarea -->
           <div *ngIf="tarea.id === editTaskId; else showTask">
-            <input [(ngModel)]="tarea.titulo" placeholder="Editar título" />
+            <input class="form-control" [(ngModel)]="tarea.titulo" placeholder="Editar título" />
             <label>
               Completada:
-              <input type="checkbox" [(ngModel)]="tarea.estado" />
+              <input class="form-check-input" type="checkbox" [(ngModel)]="tarea.estado"/>
             </label>
             <button class="btn btn-primary" (click)="updateTask(tarea)">Actualizar</button>
             <button class="btn btn-secondary" (click)="cancelEdit()">Cancelar</button>
@@ -40,11 +40,10 @@
   </div>
   <div class="container">
 
-    <h3>Prueba</h3>
   </div>
   <div>
-    <button (click)="addTask()" > Add</button>
-    <input [(ngModel)]="newTask" placeholder="Enter new task"/>
+    <button class="btn btn-primary" (click)="addTask()" > Add</button>
+    <input class="form-control" [(ngModel)]="newTask" placeholder="Enter new task"/>
     
   </div>
 
